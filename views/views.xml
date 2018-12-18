@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="jeeb.list">
+      <field name="name">jeeb list</field>
+      <field name="model">jeeb.jeeb</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="jeeb.action_window">
+      <field name="name">jeeb window</field>
+      <field name="res_model">jeeb.jeeb</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="jeeb.action_server">
+      <field name="name">jeeb server</field>
+      <field name="model_id" ref="model_jeeb_jeeb"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="jeeb" id="jeeb.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="jeeb.menu_1" parent="jeeb.menu_root"/>
+    <menuitem name="Menu 2" id="jeeb.menu_2" parent="jeeb.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="jeeb.menu_1_list" parent="jeeb.menu_1"
+              action="jeeb.action_window"/>
+    <menuitem name="Server to list" id="jeeb" parent="jeeb.menu_2"
+              action="jeeb.action_server"/>
+    -->
+  </data>
+</odoo>
