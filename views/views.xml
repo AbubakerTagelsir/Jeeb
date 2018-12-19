@@ -30,10 +30,37 @@
 
     <!-- explicit list view definition -->
     <record model="ir.ui.view" id="request_form">
+        <field name="name">request form </field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
+        <field name="arch" type="xml">
+          <xpath expr="//form/sheet/div[1]/button[1]" position="after">
+              <button name="%(purchase.purchase_form_action)d"
+                    string="Purchase Order"
+                    type="action"
+                    default_focus="0"
+                    icon="fa-shopping-cart"
+                    class="oe_stat_button"
+                    help="Click here to make a request for an item" />
+
+          </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="request_form">
       <field name="name">request form </field>
       <field name="model">crm.lead</field>
-       <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+       <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
       <field name="arch" type="xml">
+
+        <xpath expr="//form/sheet/div[3]/label" position="attributes">
+          <attribute name="string">Request</attribute>
+        </xpath>
+
+        <xpath expr="//form/sheet/div[3]/h1/field" position="attributes">
+          <attribute name="placeholder">Requested Item ...</attribute>
+        </xpath>
+
         <xpath expr="//form/sheet/div[1]/button[1]" position="after">
           <button name="%(request_check_action_form)d"
                 string="Check Request"
@@ -42,15 +69,6 @@
                 icon="fa-check"
                 class="oe_stat_button"
                 help="Click here to check the availability of and price" />
-
-          <button name="%(purchase.purchase_form_action)d"
-                string="Purchase Order"
-                type="action"
-                default_focus="0"
-                icon="fa-shopping-cart"
-                class="oe_stat_button"
-                help="Click here to make a request for an item" />
-
         </xpath>
       </field>
     </record>
@@ -63,9 +81,21 @@
          <field name="partner_id" position="after">
           <field name ="request_id" string="Request" />
          </field>
-        <!--  <field name="partner_id" position="attributes">
-          <attribute name ="context">{'default_partner_id':request_id}</attribute>
-         </field> -->
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="request_list">
+      <field name="name">Requests</field>
+      <field name="model">crm.lead</field>
+       <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+      <field name="arch" type="xml">
+         <xpath expr="//tree" position="attributes">
+          <attribute name="string">Request</attribute>
+         </xpath>
+         <xpath expr="//tree/field[3]" position="attributes">
+            <attribute name="string">Request</attribute>
+         </xpath>
       </field>
     </record>
     
@@ -116,7 +146,6 @@
       </field>
   </record>
     
-
     
     
    <!--  <record model="ir.actions.act_window" id="request_action_window">
@@ -144,14 +173,15 @@
 
     <!-- Top menu item -->
     
+    
     <!-- <menuitem name="jeeb" string="Jeeb" id="jeeb.menu_root"/> -->
     
     <!-- menu categories -->
+    <menuitem name="Request" id="crm.menu_crm_leads" parent="crm.crm_menu_pipeline"/>
     <!-- 
     <menuitem name="Check Request" action="request_check_action_form"
       id="request_action_window"/> -->
     <!-- <menuitem name="Menu 2" id="jeeb.menu_2" parent="jeeb.menu_root"/> -->
-    
     <!-- actions -->
     <!--
     <menuitem name="List" id="jeeb.menu_1_list" parent="jeeb.menu_1"

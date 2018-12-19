@@ -7,6 +7,7 @@ class PurchaseOrder(models.Model):
 
     request_id = fields.Many2one('crm.lead')
 
+
 class RequestCheck(models.Model):
 	_name = 'request.check'
 	name = fields.Char(compute="_get_name")
