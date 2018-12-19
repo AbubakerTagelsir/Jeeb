@@ -8,6 +8,12 @@ class PurchaseOrder(models.Model):
     request_id = fields.Many2one('crm.lead')
 
 
+class Request(models.Model):
+	_inherit = 'crm.lead'
+	request_method = fields.Selection(
+		selection=[('phone','Phone'),('email','E-mail'),('other','Other')]
+		)
+
 class RequestCheck(models.Model):
 	_name = 'request.check'
 	name = fields.Char(compute="_get_name")
