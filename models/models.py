@@ -13,6 +13,24 @@ class Request(models.Model):
 	request_method = fields.Selection(
 		selection=[('phone','Phone'),('email','E-mail'),('other','Other')]
 		)
+	product = fields.Many2one('product.template',compute='check_product_exist')
+	# category = fields.Many2one('product.category', default="All")
+
+	@api.one
+	def check_product_exist(self):
+		product_list = self.env['product.template'].search([])
+
+		for p in product_list:
+			if p.name == self.name:
+				self.product=p 
+			else:
+				self.product = self.env['product.template'].create({
+					'name':self.name,
+					'type':'consu',
+					'categ_id':1,
+					})
+
+
 
 class RequestCheck(models.Model):
 	_name = 'request.check'

@@ -63,6 +63,7 @@
 
         <xpath expr="//form/sheet/group/group/field" position="before">
           <field name="request_method"/>
+          <field name="product"/>
         </xpath>
 
         <xpath expr="//form/sheet/div[1]/button[1]" position="after">
